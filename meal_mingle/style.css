@@ -18,10 +18,11 @@ body {
 }
 /* Header Styles */
 header {
-  background: #f8d7da;
-  padding: 10px 0;
+   background: #F8D7BE;
+    padding: 10px 3px;
+    margin: 3px;
+    padding-top: 15px;
 }
-
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -31,18 +32,23 @@ header {
 .logo {
   display: flex;
   align-items: center;
-  color: #721c24;
+  color: #fff;
+  font-size: 30px;
 }
-
+.logo span{
+  color: rgb(0, 21, 255);
+}
 .logo img {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
+  width: 44px;
+    height: 44px;
+    margin-right: 8px;
+    border-radius: 21px;
 }
 
 .nav-list {
   list-style: none;
   display: flex;
+  font-size: 18px;
 }
 
 .nav-list li {
@@ -91,6 +97,11 @@ header {
 
 
 /* header section end  */
+.image{
+  position: relative !important;
+  width: 100% !important;
+  height: 600px !important;
+}
 /* about section start  */
 .heading{
   width: 90%;
