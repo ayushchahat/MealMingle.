@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Include HTML2Canvas and jsPDF from CDN -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> -->
+
+ <!-- Include HTML2Canvas and jsPDF from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js"></script>
+
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- MY CSS -->
+    <link rel="stylesheet" href="css/AfterLogin.css" />
+
+
+    <!-- Icon image -->
+    <link rel="icon" href="images/canteen-service.png">
+    
+    <title>MealMingle</title>
+   
+  </head>
+  <body>
+
+    
+    <!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+        {{!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button> --}}
+
+        <nav class="navbar navbar-light bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+              <img class="icon-img" src="images/canteen-service.png" alt="icon image" width="22%" class="d-inline-block align-text-top">
+              <h1 class="logo">Meal<span>Mingle.</span></h1>
+            </a>
+          </div>
+        </nav>
+
+
+
+
+        <div class="dropdown">
+          <img src="images/canteen-service.png" class="img-fluid" alt="Profile image" width="25%">
+
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            {{UserName}}
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">Your Profile</a></li>
+            <li><a class="dropdown-item" href="#">Your Complaint</a></li>
+            <li><a class="dropdown-item" href="#">Logout</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+
+
+   <div class="button-option"> 
+<button type="button" class="btn btn-primary" onclick="showBox('box1');loadLocalPDF();">Mess Menu</button>
+<button type="button" class="btn btn-secondary" onclick="showBox('box2');loadcomment();">Complaint</button>
+<button type="button" class="btn btn-success" onclick="showBox('box3')">Suggestion</button>
+<button type="button" class="btn btn-danger" onclick="showBox('box4')">Something</button>
+
+</div>
+
+
+
+<div class="slidebar">
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="images/pic7.jpeg" class="d-block w-100 slidebarimg" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>First slide label</h5>
+        <p>Some representative placeholder content for the first slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="images/pic6.jpeg" class="d-block w-100 slidebarimg" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Second slide label</h5>
+        <p>Some representative placeholder content for the second slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="images/pic.jpg" class="d-block w-100 slidebarimg" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Third slide label</h5>
+        <p>Some representative placeholder content for the third slide.</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</div>
+
+<div id="box1" class="box">
+
+
+
+   {{!-- <button onclick="loadLocalPDF()">Load Local PDF</button> --}}
+
+    {{!-- <button type="button" id="clickbind" class="btn btn-primary btn-sm ">Download menu</button> --}}
+
+    {{!-- <div id="localPdfViewer"></div> --}}
+    <div id="localPdfViewer" class="container">
+  <!-- Content here -->
+</div>
+
+   
+  <table class="table" id="myTable">
+    <thead>
+      <tr>
+        <th scope="col">Weekdays</th>
+        <th scope="col">Breakfast</th>
+        <th scope="col">Lunch</th>
+        <th scope="col">Dinner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Sunday</th>
+        <td>Aloo Pratha + Achhar</td>
+        <td>Biryani</td>
+        <td>Butter Chicken</td>
+      </tr>
+      <tr>
+        <th scope="row">Monday</th>
+        <td>Aloo Pratha + Achhar</td>
+        <td>Razma Chawal + mixveg</td>
+        <td>Sahi Panner</td>
+      </tr>
+      <tr>
+        <th scope="row">Tuesday</th>
+        <td >Kachaudi</td>
+        <td>Handi Chicken</td>
+        <td>Veg Biryani</td>
+      </tr>
+      <tr>
+        <th scope="row">Wednesday</th>
+        <td >Masala Dosha</td>
+        <td>Daal Makhni + mixveg</td>
+        <td >Rajma</td>
+      </tr>
+      <tr>
+        <th scope="row">Thrusday</th>
+        <td >Idli Dosha</td>
+        <td>Chicken Biryani</td>
+        <td>Panner</td>
+      </tr>
+      <tr>
+        <th scope="row">Friday</th>
+        <td>Chola Samosha</td>
+        <td>Fish Curry</td>
+        <td>Chicken handi</td>
+      </tr>
+      <tr>
+        <th scope="row">Saturday</th>
+        <td >Poha + Jalebi</td>
+        <td>Veg Biryani</td>
+        <td>Handi Chicken</td>
+      </tr>
+    </tbody>
+  </table>
+  <button type="button" id="clickbind" class="btn btn-primary btn-sm ">Download menu</button>
+</div>
+
+
+<div id="box2" class="box">
+
+  <div id="complaintShowHide" class="container">
+     <div id="complaintsContainer" class="container">
+    <div id="complaintsSection" class="container">
+      <!-- Content here -->
+      Complaints will shown here...
+    </div>
+  </div>
+  <div  class="d-grid gap-2">
+    <button type="button" id="ComplaintWriteBtn" class="btn btn-primary" onclick="ShowHideComplaint()">Write Your Complaint</button>
+
+  </div>
+  </div>
+
+ 
+  <form action="/AddComplaints" id="ComplaintRegister" class="ComplaintRegistrationForm" method="post">
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Name</label>
+      <input name="Name" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Deepak Singh">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Registration Number</label>
+      <input name="RegistrationNumber" type="Number" class="form-control" id="exampleFormControlInput1" placeholder="20215141">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Email ID</label>
+      <input name="Email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="deepak.20215141@mnnit.ac.in">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Hostel Name</label>
+      <input name="HostelName" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tondon">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">Complaint</label>
+      <textarea name="Complaint" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+
+<div id="box3" class="box">
+  <form>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Name</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Deepak Singh">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Registration Number</label>
+      <input type="Number" class="form-control" id="exampleFormControlInput1" placeholder="20215141">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Email ID</label>
+      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="deepak.20215141@mnnit.ac.in">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Hostel Name</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tondon">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">Suggestion</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+
+<div id="box4" class="box">This is Box 4</div>
+
+    
+<script>
+  function onClick() {
+    alert("Hello");
+  var pdf = new jsPDF('p', 'pt', 'letter');
+  pdf.canvas.height = 72 * 11;
+  pdf.canvas.width = 72 * 8.5;
+
+  pdf.fromHTML(document.body);
+
+  pdf.save('test.pdf');
+};
+
+var element = document.getElementById("clickbind");
+console.log("Hello");
+console.log(element);
+element.addEventListener("click", onClick);
+
+
+
+
+function loadLocalPDF() {
+  // Path to your local PDF file
+  const pdfPath = 'C:\Users\imdee\Downloads/test.pdf';
+
+  // Container to hold the PDF viewer
+  const pdfContainer = document.getElementById('localPdfViewer');
+
+  // Initialize PDF.js
+  pdfjsLib.getDocument(pdfPath).then((pdfDocument) => {
+      // Assuming it's a single-page document, load the first page
+      pdfDocument.getPage(1).then((pdfPage) => {
+          // Create a canvas for the page
+          const canvas = document.createElement('canvas');
+          pdfContainer.appendChild(canvas);
+
+          // Render the page on the canvas
+          const context = canvas.getContext('2d');
+          const viewport = pdfPage.getViewport({ scale: 1.5 });
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
+
+          const renderContext = {
+              canvasContext: context,
+              viewport: viewport,
+          };
+
+          pdfPage.render(renderContext);
+      });
+  });
+}
+
+</script>
+    <!--  Bootstrap Javascript-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- MY Javascript -->
+     <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+    <script src="javascript/AfterLogin.js"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,81 @@
+body {
+  margin: 0;
+}
+
+.bg-light {
+  background-color:#F8D7BE!important;
+}
+
+.logo {
+  color: var(--color-white);
+  font-size: 26px;
+  display: inline;
+}
+
+.logo span {
+  color: blue;
+}
+
+.button-option{
+  margin-left: 36%;
+  margin-top: 7px;
+}
+
+.slidebar{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.slidebarimg{
+  width: 100vw; 
+  height: 100vh; 
+  object-fit: cover;
+}
+
+.box {
+  display: none;
+  padding: 20px;
+  margin: 10px;
+  
+}
+
+.ComplaintRegistrationForm{
+  display: none;
+}
+
+#box1 {
+    background-color: lightblue;
+}
+
+#box2 {
+  background-color: lightgreen;
+  width: 50%;
+  margin-left: 25%;
+}
+
+#box3 {
+  background-color: lightcoral;
+  width: 50%;
+  margin-left: 25%;
+}
+
+#box4{
+  background-color: lightpink;
+}
+
+#menu-download-btn{
+  margin-left: 47%;
+  margin-top: 10px;
+}
+
+
+#complaintsContainer {
+  max-height: 300px; /* Set the desired height for the complaints container */
+  overflow-y: auto; /* Add a vertical scrollbar when content exceeds the height */
+  border: 1px solid #ccc; /* Optional: Add a border for styling */
+  padding: 10px; /* Optional: Add padding for spacing */
+}
+
+#ComplaintWriteBtn{
+  margin-top: 20px;
+}
